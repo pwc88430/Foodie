@@ -4,13 +4,11 @@ const port = process.env.PORT || 8000;
 const mongoose = require("mongoose");
 const cors = require("cors");
 const uri = "mongodb+srv://foodie:Password1234@cluster0.p58zp9l.mongodb.net/?retryWrites=true&w=majority";
+const items = require("./routes/api/items");
+app.use("./api/items", items);
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ extended: false }));
-
-app.get("/", (req, res) => res.send("Hello world!"));
-
-app.get("/home", (req, res) => res.send(""));
 
 mongoose.set("strictQuery", false);
 mongoose
