@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const ItemSchema = new mongoose.Schema({
-    title: { type: String, required: true },
+    title: { type: String },
     description: { type: String },
     image: { type: String },
     updated_date: { type: Date, default: Date.now },

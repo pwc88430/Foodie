@@ -7,8 +7,11 @@ const uri = "mongodb+srv://foodie:Password1234@cluster0.p58zp9l.mongodb.net/?ret
 const items = require("./routes/api/items");
 app.use("/api/items", items);
 
-app.use(cors());
-app.use(express.json({ origin: true, extended: false }));
+app.use(cors({ origin: true, credentials: true }));
+app.use(express.json({ extended: false }));
+var bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 mongoose.set("strictQuery", false);
 mongoose
