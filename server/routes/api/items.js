@@ -4,10 +4,14 @@ const Item = require("../../models/Item");
 var bodyParser = require("body-parser");
 
 router.get("/", (req, res) => {
-    res.send("testing get / item route");
+    Item.find()
+        .then((item) => res.json(item))
+        .catch((err) => res.status(404).json({ noitemsfound: "No Items found" }));
 });
 router.get("/:id", (req, res) => {
-    res.send("testing get /:id route");
+    Item.findById(req.params.id)
+        .then((item) => res.json(item))
+        .catch((err) => res.status(400).json({ noitemfound: "No Item found" }));
 });
 
 router.post("/", bodyParser.json(), (req, res) => {
@@ -21,12 +25,18 @@ router.post("/", bodyParser.json(), (req, res) => {
         });
 });
 
-router.put("/:id", (req, res) => {
-    res.send("testing put /:id route");
+router.put("/:id", bodyParser.json(), (req, res) => {
+    console.log(req.params.id);
+    console.log(req.body);
+    Item.findByIdAndUpdate(req.params.id, req.body)
+        .then((item) => res.json({ msg: "Updated successfully" }))
+        .catch((err) => res.status(400).json({ error: "Unable to update the database" }));
 });
 
 router.delete("/:id", (req, res) => {
-    res.send("testing delete /:id route");
+    Item.findByIdAndDelete(req.params.id)
+        .then((item) => res.json({ mgs: "Item entry deleted successfully" }))
+        .catch((err) => res.status(400).json({ error: "No such item" }));
 });
 
 module.exports = router;
