@@ -17,7 +17,10 @@ export default function Home() {
             <div id="black_background"></div>
             <NewRestaurantForm />
             <div onClick={addItem} id="new_item_button">
+               
                 +
+                
+
             </div>
             <Card />
             <div id="logout">Logout</div>
