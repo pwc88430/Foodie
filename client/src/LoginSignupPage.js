@@ -43,6 +43,12 @@ export default function LoginSignupPage() {
                         <input placeholder="email"></input>
                         <input placeholder="username"></input>
                         <input placeholder="password"></input>
+                        <div>
+                            <input type="checkbox"></input>
+                            <label>
+                                I agree to the <a href="">Terms of Service</a>
+                            </label>
+                        </div>
                         <button className="button">Sign Up</button>
                     </div>
                     <div className="content" id="login">
