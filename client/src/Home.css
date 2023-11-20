@@ -1,0 +1,77 @@
+#new_item_button {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    width: 90px;
+    height: 90px;
+    background-color: #74f7c9;
+    font-size: 40px;
+    border-radius: 50%;
+    text-align: center;
+    transition-duration: 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 2px;
+    font-size: 80px;
+    text-align: center;
+    z-index: 2;
+}
+
+#new_item_button:hover {
+    background-color: #4eab8b;
+    box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 2px;
+    color: white;
+}
+
+#new_restaurant_form {
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    position: absolute;
+    left: 100px;
+    top: 200px;
+    z-index: 2;
+    transition: 0.2s;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+#new_restaurant_form.hidden {
+    display: none;
+}
+
+#black_background {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    filter: blur(0.5);
+    position: fixed;
+    top: 6rem;
+    left: 0;
+    transition-duration: 0.3s;
+    z-index: 1;
+}
+
+#black_background.hidden {
+    display: none;
+    transition-duration: 0.3s;
+}
+
+#new_restaurant_form img.rewarded {
+    color: yellow;
+}
+
+#logout {
+    background-color: #74f7c9;
+    width: fit-content;
+    padding: 10px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border-radius: 10px;
+}
+
+#logout:hover {
+    background-color: #4eab8b;
+    color: white;
+}

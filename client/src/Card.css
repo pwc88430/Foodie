@@ -1,0 +1,53 @@
+#card {
+    width: 300px;
+    height: 600px;
+    background-color: #f9c1c1;
+    margin-top: 200px;
+    margin-left: 300px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+#main_picture {
+    height: 50%;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+#rating_container {
+    height: 15%;
+}
+
+#title {
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+#comment_container {
+    padding: 10px;
+    background-color: #f77474;
+    height: 35%;
+
+    position: relative;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#edit_buttons {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+#edit_buttons img:hover {
+    transform: scale(1.1);
+}
+
+#comment_container img {
+    width: 30px;
+}
+
+#delete_prompt {
+}
