@@ -46,7 +46,7 @@ export default function LoginSignupPage() {
                         <div>
                             <input type="checkbox"></input>
                             <label>
-                                I agree to the <a href="">Terms of Service</a>
+                                I agree to the <a href="https://en.wikipedia.org/wiki/Lionel_Messi">Terms of Service</a>
                             </label>
                         </div>
                         <button className="button">Sign Up</button>
