@@ -64,7 +64,7 @@ input {
 }
 
 .button {
-    background: #ffd166;
+    background: rgb(255, 217, 50);
 
     bottom: 20px;
     border: none;
@@ -72,6 +72,10 @@ input {
     border-radius: 4px;
     cursor: pointer;
     margin: 5px;
+}
+
+.button:hover {
+    background: rgb(235, 200, 44);
 }
 
 header {
