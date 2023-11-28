@@ -23,7 +23,7 @@
 
 #new_restaurant_form {
     width: 400px;
-    height: 400px;
+    height: fit-content;
     background-color: white;
     position: absolute;
     left: 100px;
@@ -35,9 +35,27 @@
     flex-direction: column;
     padding: 20px;
 }
+#new_restaurant_form form {
+    display: flex;
+    flex-direction: column;
+}
+
+#new_restaurant_form button {
+    margin: 10px;
+    background-color: #74f7c9;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    width: fit-content;
+}
 
 #new_restaurant_form.hidden {
     display: none;
+}
+
+#new_restaurant_form textarea {
+    width: auto;
+    height: 200px;
 }
 
 #black_background {
@@ -65,7 +83,7 @@
     background-color: #74f7c9;
     width: fit-content;
     padding: 10px;
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     border-radius: 10px;
@@ -74,4 +92,16 @@
 #logout:hover {
     background-color: #4eab8b;
     color: white;
+}
+
+Link {
+    text-decoration: none;
+}
+
+#cancel {
+    background-color: #ff0000;
+    width: 200px;
+    padding: 10px;
+    width: fit-content;
+    border-radius: 10px;
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function NewRestaurantForm() {
+export default function EditRestaurantForm() {
     const [starCount, setStarCount] = useState(0);
     const [enteredName, setEnteredName] = useState("");
     const [enteredImage, setEnteredImage] = useState("");
@@ -49,7 +49,7 @@ export default function NewRestaurantForm() {
     return (
         <div id="new_restaurant_form">
             <form onSubmit={submitHandler}>
-                <h1>New Restaurant Form</h1>
+                <h1>Edit Restaurant Form</h1>
                 <div>
                     <img onClick={increaseStarCount} src="star.svg"></img>
                     <img onClick={increaseStarCount} src="star.svg"></img>
@@ -60,7 +60,7 @@ export default function NewRestaurantForm() {
                 <input placeholder="Restaurant Name" onChange={nameChangeHandler}></input>
                 <input placeholder="Image Url" onChange={imageChangeHandler}></input>
                 <textarea placeholder="description" onChange={reviewChangeHandler}></textarea>
-                <button type="submit">Add Restaurant</button>
+                <button type="submit">Update Restaurant</button>
                 <Link id="cancel" to="/home">
                     Cancel
                 </Link>

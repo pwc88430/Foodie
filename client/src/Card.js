@@ -1,4 +1,5 @@
 import "./Card.css";
+import { Link } from "react-router-dom";
 
 export default function Card() {
     let restaurantTitle = "Magianos";
@@ -21,7 +22,9 @@ export default function Card() {
                 {comment}
                 <div id="edit_buttons">
                     <img src="delete.svg"></img>
-                    <img src="edit.svg"></img>
+                    <Link id="edit" to="/editItem">
+                        <img src="edit.svg"></img>
+                    </Link>
                 </div>
             </div>
         </div>
