@@ -16,6 +16,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "start-server": "cd ../server && npm start",
+    "dev": "concurrently \"npm start\" \"npm run start-server\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -35,5 +37,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
