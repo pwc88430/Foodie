@@ -5,6 +5,11 @@ export default function Card() {
     let restaurantTitle = "Magianos";
     let comment = "I really enjoyed this food here. I will definitely go again!!";
 
+    const deleteCard = () => {
+        const card = document.getElementById('card');
+        card.parentNode.removeChild(card);
+    };
+
     return (
         <div id="card">
             <img id="main_picture" src="https://media-cdn.tripadvisor.com/media/photo-s/10/e6/3d/5e/the-national-s-dining.jpg"></img>
@@ -21,12 +26,19 @@ export default function Card() {
             <div id="comment_container">
                 {comment}
                 <div id="edit_buttons">
+<<<<<<< HEAD
                     <img src="delete.svg"></img>
                     <Link id="edit" to="/editItem">
                         <img src="edit.svg"></img>
                     </Link>
+=======
+                    <img id="delete_button" src="delete.svg" onClick={deleteCard}></img>
+                     <img src="edit.svg" alt="Edit" />
+>>>>>>> f015ad0a1ae76cca6faee553d7731bacfe2342a0
                 </div>
             </div>
+            
         </div>
+        
     );
 }

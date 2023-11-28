@@ -33,11 +33,11 @@ export default function Home() {
             <header>
                 <img src="logo.png"></img>
             </header>
-
-            <Link to="/addItem" id="new_item_button">
+            <div id="black_background"></div>
+            <NewRestaurantForm />
+            <div onClick={addItem} id="new_item_button">
                 +
-            </Link>
-            <ol>{restaurantList}</ol>
+            </div>
             <Card />
             <Link id="logout" to="/">
                 Logout
