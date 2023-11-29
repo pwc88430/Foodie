@@ -8,9 +8,19 @@ export default function LoginSignupPage() {
         username: "",
         password: ""
     });
+    const [loginData, setLoginData] = useState({
+        email: "",
+        password: ""
+    });
+    const [signupmsg, setSignupmsg] = useState("");
+    const [tosChecked, setTosChecked] = useState(false);
 
     function handleInputChange(event) {
         setSignupData({ ...signupData, [event.target.name]: event.target.value });
+    }
+
+    function handleTosChecked(event) {
+        setTosChecked(event.target.checked); // Update checkbox state
     }
 
     async function handleSignup(event) {
@@ -18,9 +28,10 @@ export default function LoginSignupPage() {
         try {
             const response = await axios.post('http://localhost:8000/api/users/signup', signupData);
             console.log("User registered successfully", response.data);
+            setSignupmsg("User registered successfully, you may now log in.");
         } catch (error) {
             console.error('Signup failed:', error.response ? error.response.data : error.message);
-            // Handle errors
+            setSignupmsg("Error registering user, please try again.");
         }
     }
 
@@ -54,15 +65,20 @@ export default function LoginSignupPage() {
             </header>
             <div className="tabs" onClick={changeTabs}>
                 <div className="btn-container">
-                    <button id="sign-up-tab-button" className="mainButton live" data-id="signup">
-                        Sign Up
-                    </button>
-                    <button className="mainButton" data-id="login">
+                    <button className="mainButton live" data-id="login">
                         Login
+                    </button>
+                    <button id="sign-up-tab-button" className="mainButton" data-id="signup">
+                        Sign Up
                     </button>
                 </div>
                 <div className="tabs-content">
-                    <div className="content live" id="signup">
+                    <div className="content live" id="login">
+                        <input placeholder="email"></input>
+                        <input placeholder="password"></input>
+                        <button className="button">Login</button>
+                    </div>
+                    <div className="content" id="signup">
                         <form onSubmit={handleSignup}>
                             <input 
                                 placeholder="email" 
@@ -81,18 +97,20 @@ export default function LoginSignupPage() {
                                 value={signupData.password} 
                                 onChange={handleInputChange} />
                             <div>
-                                <input type="checkbox"></input>
+                                <input type="checkbox"
+                                    checked = {tosChecked}
+                                    onChange={handleTosChecked}
+                                ></input>
                                 <label>
                                     I agree to the <a href="https://en.wikipedia.org/wiki/Lionel_Messi">Terms of Service</a>
                                 </label>
                             </div>
-                            <button type = "submit" className="button">Sign Up</button>
+                            <button type = "submit" className="button" disabled = {!tosChecked}>Sign Up</button>
                         </form>
                     </div>
-                    <div className="content" id="login">
-                        <input placeholder="email"></input>
-                        <input placeholder="password"></input>
-                        <button className="button">Login</button>
+                    
+                    <div className="successmsg">
+                        {signupmsg}
                     </div>
                 </div>
             </div>
