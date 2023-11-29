@@ -95,7 +95,17 @@
     color: white;
 }
 
+Link {
+    text-decoration: none;
+}
 
-#logout  {
+#cancel {
+    background-color: #ff0000;
+    width: 200px;
+    padding: 10px;
+    width: fit-content;
+    border-radius: 10px;
+}
 
+#logout {
 }

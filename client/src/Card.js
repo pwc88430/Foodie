@@ -6,7 +6,7 @@ export default function Card() {
     let comment = "I really enjoyed this food here. I will definitely go again!!";
 
     const deleteCard = () => {
-        const card = document.getElementById('card');
+        const card = document.getElementById("card");
         card.parentNode.removeChild(card);
     };
 
@@ -26,12 +26,14 @@ export default function Card() {
             <div id="comment_container">
                 {comment}
                 <div id="edit_buttons">
+                    <img src="delete.svg"></img>
+                    <Link id="edit" to="/editItem">
+                        <img src="edit.svg"></img>
+                    </Link>
                     <img id="delete_button" src="delete.svg" onClick={deleteCard}></img>
-                     <img src="edit.svg" alt="Edit" />
+                    <img src="edit.svg" alt="Edit" />
                 </div>
             </div>
-            
         </div>
-        
     );
 }
