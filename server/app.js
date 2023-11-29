@@ -11,6 +11,16 @@ app.use("/api/items", items);
 app.use("/api/signUp", signUp);
 app.use("/api/login", login);
 
+app.use(
+    cors({
+        allowedHeaders: ["Content-Type", "Access-Control-Allow-Methods"],
+        exposedHeaders: ["Content-Type", "Access-Control-Allow-Methods"],
+        origin: true,
+        methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+        preflightContinue: true,
+    })
+);
+
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ extended: false }));
 var bodyParser = require("body-parser");

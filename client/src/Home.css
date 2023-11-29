@@ -85,11 +85,7 @@
     width: fit-content;
     padding: 10px;
     position: fixed;
-<<<<<<< HEAD
-    top: 20px;
-=======
     top: 40px;
->>>>>>> f015ad0a1ae76cca6faee553d7731bacfe2342a0
     right: 20px;
     border-radius: 10px;
 }
@@ -99,7 +95,6 @@
     color: white;
 }
 
-<<<<<<< HEAD
 Link {
     text-decoration: none;
 }
@@ -111,9 +106,6 @@ Link {
     width: fit-content;
     border-radius: 10px;
 }
-=======
 
-#logout  {
-
+#logout {
 }
->>>>>>> f015ad0a1ae76cca6faee553d7731bacfe2342a0
