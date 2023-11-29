@@ -26,15 +26,12 @@ export default function Card() {
             <div id="comment_container">
                 {comment}
                 <div id="edit_buttons">
-<<<<<<< HEAD
                     <img src="delete.svg"></img>
                     <Link id="edit" to="/editItem">
                         <img src="edit.svg"></img>
                     </Link>
-=======
                     <img id="delete_button" src="delete.svg" onClick={deleteCard}></img>
-                     <img src="edit.svg" alt="Edit" />
->>>>>>> 7e4f5a4d8ffbbdd26f1497218bbf7ab3c415ce7d
+                    <img src="edit.svg" alt="Edit" />
                 </div>
             </div>
         </div>

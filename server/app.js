@@ -12,6 +12,8 @@ const uri = "mongodb+srv://foodie:Password1234@cluster0.p58zp9l.mongodb.net/?ret
 
 const items = require("./routes/api/items");
 const users = require("./routes/api/users");
+const signUp = require("./routes/api/signUp");
+const login = require("./routes/api/items");
 app.use("/api/items", items);
 app.use("/api/signUp", signUp);
 app.use("/api/login", login);
