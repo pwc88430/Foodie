@@ -30,8 +30,6 @@ export default function Card() {
                     <Link id="edit" to="/editItem">
                         <img src="edit.svg"></img>
                     </Link>
-                    <img id="delete_button" src="delete.svg" onClick={deleteCard}></img>
-                    <img src="edit.svg" alt="Edit" />
                 </div>
             </div>
         </div>

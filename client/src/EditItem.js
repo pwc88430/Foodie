@@ -9,7 +9,7 @@ export default function EditItem() {
             </header>
             <EditRestaurantForm />
 
-            <Link id="logout" to="/">
+            <Link style={{ textDecoration: "none" }} id="logout" to="/">
                 Logout
             </Link>
         </div>

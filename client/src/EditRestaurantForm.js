@@ -61,7 +61,7 @@ export default function EditRestaurantForm() {
                 <input placeholder="Image Url" onChange={imageChangeHandler}></input>
                 <textarea placeholder="description" onChange={reviewChangeHandler}></textarea>
                 <button type="submit">Update Restaurant</button>
-                <Link id="cancel" to="/home">
+                <Link style={{ textDecoration: "none" }} id="cancel" to="/home">
                     Cancel
                 </Link>
             </form>

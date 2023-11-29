@@ -33,13 +33,12 @@ export default function Home() {
             <header>
                 <img src="logo.png"></img>
             </header>
-            <div id="black_background"></div>
-            <NewRestaurantForm />
-            <div onClick={addItem} id="new_item_button">
+
+            <Link style={{ textDecoration: "none" }} to="/addItem" id="new_item_button">
                 +
-            </div>
+            </Link>
             <Card />
-            <Link id="logout" to="/">
+            <Link style={{ textDecoration: "none" }} id="logout" to="/">
                 Logout
             </Link>
         </div>
