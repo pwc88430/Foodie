@@ -1,13 +1,12 @@
-#card {
+.card {
     width: 300px;
     height: 600px;
     background-color: #f9c1c1;
-    margin-top: 200px;
-    margin-left: 300px;
     display: flex;
     flex-direction: column;
     border-radius: 20px;
     box-shadow: 0 2px 4px 4px rgba(0, 0, 0, 0.2);
+    margin: 20px;
 }
 
 #main_picture {

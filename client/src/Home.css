@@ -107,5 +107,13 @@ Link {
     border-radius: 10px;
 }
 
+#card_container {
+    display: flex;
+    width: 70%;
+    flex-wrap: wrap;
+    margin: auto;
+    margin-top: 150px;
+}
+
 #logout {
 }

@@ -22,8 +22,8 @@ export default function Home() {
 
     let restaurantList;
 
-    restaurantList = restaurants.map((item) => {
-        return <li>{item.title}</li>;
+    restaurantList = restaurants.map((item, index) => {
+        return <Card id={item._id} key={index} title={item.name} image={item.image} review={item.description} />;
     });
 
     function addItem(event) {}
@@ -37,7 +37,8 @@ export default function Home() {
             <Link style={{ textDecoration: "none" }} to="/addItem" id="new_item_button">
                 +
             </Link>
-            <Card />
+            <div id="card_container">{restaurantList}</div>
+
             <Link style={{ textDecoration: "none" }} id="logout" to="/">
                 Logout
             </Link>

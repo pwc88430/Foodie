@@ -1,20 +1,33 @@
 import "./Card.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-export default function Card() {
-    let restaurantTitle = "Magianos";
-    let comment = "I really enjoyed this food here. I will definitely go again!!";
+export default function Card({ name, image, review, id }) {
+    const deleteCard = (event) => {
+        axios
+            .delete(
+                `http://localhost:8000/api/items/${id}`,
 
-    const deleteCard = () => {
-        const card = document.getElementById("card");
+                {
+                    headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+                    params: { id: id },
+                }
+            )
+            .then((res) => {
+                event.parentNode.removeChild(event.parentNode.getElementById(id));
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        const card = document.getElementById(id);
         card.parentNode.removeChild(card);
     };
 
     return (
-        <div id="card">
-            <img id="main_picture" src="https://media-cdn.tripadvisor.com/media/photo-s/10/e6/3d/5e/the-national-s-dining.jpg"></img>
+        <div id={id} className="card">
+            <img id="main_picture" src={image}></img>
             <div id="rating_container">
-                <h1 id="title">{restaurantTitle}</h1>
+                <h1 id="title">{name}</h1>
                 <div id="rating">
                     <img src="star.svg"></img>
                     <img src="star.svg"></img>
@@ -24,9 +37,9 @@ export default function Card() {
                 </div>
             </div>
             <div id="comment_container">
-                {comment}
+                {review}
                 <div id="edit_buttons">
-                    <img src="delete.svg"></img>
+                    <img onClick={deleteCard} src="delete.svg"></img>
                     <Link id="edit" to="/editItem">
                         <img src="edit.svg"></img>
                     </Link>
