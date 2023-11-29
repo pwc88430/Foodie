@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import "./LoginSignupPage.css";
 
@@ -14,9 +15,14 @@ export default function LoginSignupPage() {
     });
     const [signupmsg, setSignupmsg] = useState("");
     const [tosChecked, setTosChecked] = useState(false);
+    const navigate = useNavigate();
 
-    function handleInputChange(event) {
+    function handleSignupInputChange(event) {
         setSignupData({ ...signupData, [event.target.name]: event.target.value });
+    }
+
+    function handleLoginInputChange(event) {
+        setLoginData({ ...loginData, [event.target.name]: event.target.value });
     }
 
     function handleTosChecked(event) {
@@ -35,12 +41,27 @@ export default function LoginSignupPage() {
         }
     }
 
+    async function handleLogin(event) {
+        event.preventDefault(); // Prevents the default form submit action
+        try {
+            const response = await axios.post('http://localhost:8000/api/users/login', loginData);
+            console.log("Login Successful", response.data);
+            // setIsLoggedIn(true);
+            navigate('/');
+        } catch (error) {
+            console.error('Login failed:', error.response ? error.response.data : error.message);
+            setSignupmsg("Error with login, please check username and password and try again.");
+        }
+    }
+
     function changeTabs(event) {
         const btns = document.querySelectorAll(".mainButton");
         const articles = document.querySelectorAll(".content");
 
         console.log(btns);
         console.log(articles);
+
+        setSignupmsg("");
 
         const id = event.target.dataset.id;
 
@@ -61,7 +82,7 @@ export default function LoginSignupPage() {
     return (
         <div>
             <header>
-                <img src="logo.png"></img>
+                <img src="logo.svg" alt="logo"></img>
             </header>
             <div className="tabs" onClick={changeTabs}>
                 <div className="btn-container">
@@ -74,9 +95,20 @@ export default function LoginSignupPage() {
                 </div>
                 <div className="tabs-content">
                     <div className="content live" id="login">
-                        <input placeholder="email"></input>
-                        <input placeholder="password"></input>
-                        <button className="button">Login</button>
+                        <form onSubmit={handleLogin}>
+                            <input 
+                                placeholder="email"
+                                name="email"
+                                value = {loginData.email}
+                                onChange={handleLoginInputChange} />
+                            <input 
+                                placeholder="password" 
+                                name="password" 
+                                type="password"
+                                value={loginData.password} 
+                                onChange={handleLoginInputChange} />
+                            <button type = "submit" className="button">Login</button>
+                        </form>
                     </div>
                     <div className="content" id="signup">
                         <form onSubmit={handleSignup}>
@@ -84,18 +116,18 @@ export default function LoginSignupPage() {
                                 placeholder="email" 
                                 name="email" 
                                 value={signupData.email} 
-                                onChange={handleInputChange}/>
+                                onChange={handleSignupInputChange}/>
                             <input 
                                 placeholder="username" 
                                 name="username" 
                                 value={signupData.username} 
-                                onChange={handleInputChange} />
+                                onChange={handleSignupInputChange} />
                             <input 
                                 placeholder="password" 
                                 name="password" 
                                 type="password"
                                 value={signupData.password} 
-                                onChange={handleInputChange} />
+                                onChange={handleSignupInputChange} />
                             <div>
                                 <input type="checkbox"
                                     checked = {tosChecked}
