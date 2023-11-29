@@ -93,3 +93,9 @@ header img {
     left: -30px;
     top: -20px;
 }
+
+.successmsg {
+    padding-top: 20px;
+    /* background-color: #f77474; */
+    color:azure;
+}
