@@ -1,6 +1,29 @@
+import React, { useState } from 'react';
+import axios from 'axios';
 import "./LoginSignupPage.css";
 
 export default function LoginSignupPage() {
+    const [signupData, setSignupData] = useState({
+        email: "",
+        username: "",
+        password: ""
+    });
+
+    function handleInputChange(event) {
+        setSignupData({ ...signupData, [event.target.name]: event.target.value });
+    }
+
+    async function handleSignup(event) {
+        event.preventDefault(); // Prevents the default form submit action
+        try {
+            const response = await axios.post('http://localhost:8000/api/users/signup', signupData);
+            console.log("User registered successfully", response.data);
+        } catch (error) {
+            console.error('Signup failed:', error.response ? error.response.data : error.message);
+            // Handle errors
+        }
+    }
+
     function changeTabs(event) {
         const btns = document.querySelectorAll(".mainButton");
         const articles = document.querySelectorAll(".content");
@@ -40,16 +63,31 @@ export default function LoginSignupPage() {
                 </div>
                 <div className="tabs-content">
                     <div className="content live" id="signup">
-                        <input placeholder="email"></input>
-                        <input placeholder="username"></input>
-                        <input placeholder="password"></input>
-                        <div>
-                            <input type="checkbox"></input>
-                            <label>
-                                I agree to the <a href="https://en.wikipedia.org/wiki/Lionel_Messi">Terms of Service</a>
-                            </label>
-                        </div>
-                        <button className="button">Sign Up</button>
+                        <form onSubmit={handleSignup}>
+                            <input 
+                                placeholder="email" 
+                                name="email" 
+                                value={signupData.email} 
+                                onChange={handleInputChange}/>
+                            <input 
+                                placeholder="username" 
+                                name="username" 
+                                value={signupData.username} 
+                                onChange={handleInputChange} />
+                            <input 
+                                placeholder="password" 
+                                name="password" 
+                                type="password"
+                                value={signupData.password} 
+                                onChange={handleInputChange} />
+                            <div>
+                                <input type="checkbox"></input>
+                                <label>
+                                    I agree to the <a href="https://en.wikipedia.org/wiki/Lionel_Messi">Terms of Service</a>
+                                </label>
+                            </div>
+                            <button type = "submit" className="button">Sign Up</button>
+                        </form>
                     </div>
                     <div className="content" id="login">
                         <input placeholder="email"></input>
