@@ -15,6 +15,7 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", bodyParser.json(), (req, res) => {
+    console.log(req.body);
     Item.create(req.body)
         .then((item) => {
             res.json({ msg: "New Item added successfully" });
@@ -33,7 +34,8 @@ router.put("/:id", bodyParser.json(), (req, res) => {
         .catch((err) => res.status(400).json({ error: "Unable to update the database" }));
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", bodyParser.json(), (req, res) => {
+    console.log(req.params.id);
     Item.findByIdAndDelete(req.params.id)
         .then((item) => res.json({ mgs: "Item entry deleted successfully" }))
         .catch((err) => res.status(400).json({ error: "No such item" }));
