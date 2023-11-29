@@ -34,7 +34,7 @@ router.put("/:id", bodyParser.json(), (req, res) => {
         .catch((err) => res.status(400).json({ error: "Unable to update the database" }));
 });
 
-router.delete("/:id", bodyParser.json(), (req, res) => {
+router.delete("/:id", (req, res) => {
     console.log(req.params.id);
     Item.findByIdAndDelete(req.params.id)
         .then((item) => res.json({ mgs: "Item entry deleted successfully" }))

@@ -5,11 +5,11 @@ export default function AddItem() {
     return (
         <div>
             <header>
-                <img src="Logo.png"></img>
+                <img src="Logo.png" alt=""></img>
             </header>
             <NewRestaurantForm />
 
-            <Link style={{ textDecoration: "none" }} id="logout" to="/">
+            <Link style={{ textDecoration: "none" }} id="logout" to="/login">
                 Logout
             </Link>
         </div>

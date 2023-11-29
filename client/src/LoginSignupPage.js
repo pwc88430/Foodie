@@ -81,8 +81,8 @@ export default function LoginSignupPage() {
 
     return (
         <div>
-            <header>
-                <img src="logo.svg" alt="logo"></img>
+           <header>
+                <img src="logo.png" alt="Foodie"></img>
             </header>
             <div className="tabs" onClick={changeTabs}>
                 <div className="btn-container">

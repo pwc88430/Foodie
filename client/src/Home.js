@@ -31,7 +31,7 @@ export default function Home() {
     return (
         <div>
             <header>
-                <img src="logo.png"></img>
+                <img src="logo.png" alt=""></img>
             </header>
 
             <Link style={{ textDecoration: "none" }} to="/addItem" id="new_item_button">
@@ -39,7 +39,7 @@ export default function Home() {
             </Link>
             <div id="card_container">{restaurantList}</div>
 
-            <Link style={{ textDecoration: "none" }} id="logout" to="/">
+            <Link style={{ textDecoration: "none" }} id="logout" to="/login">
                 Logout
             </Link>
         </div>

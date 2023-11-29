@@ -32,9 +32,9 @@ export default function EditRestaurantForm() {
     function submitHandler(event) {
         event.preventDefault();
 
-        if (enteredName == "") {
-        } else if (enteredImage == "") {
-        } else if (enteredReview == "") {
+        if (enteredName === "") {
+        } else if (enteredImage === "") {
+        } else if (enteredReview === "") {
         } else {
             const id = new Date().getTime();
 
@@ -51,11 +51,11 @@ export default function EditRestaurantForm() {
             <form onSubmit={submitHandler}>
                 <h1>Edit Restaurant Form</h1>
                 <div>
-                    <img onClick={increaseStarCount} src="star.svg"></img>
-                    <img onClick={increaseStarCount} src="star.svg"></img>
-                    <img onClick={increaseStarCount} src="star.svg"></img>
-                    <img onClick={increaseStarCount} src="star.svg"></img>
-                    <img onClick={increaseStarCount} src="star.svg"></img>
+                    <img onClick={increaseStarCount} src="star.svg" alt=""></img>
+                    <img onClick={increaseStarCount} src="star.svg" alt=""></img>
+                    <img onClick={increaseStarCount} src="star.svg" alt=""></img>
+                    <img onClick={increaseStarCount} src="star.svg" alt=""></img>
+                    <img onClick={increaseStarCount} src="star.svg" alt=""></img>
                 </div>
                 <input placeholder="Restaurant Name" onChange={nameChangeHandler}></input>
                 <input placeholder="Image Url" onChange={imageChangeHandler}></input>
