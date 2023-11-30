@@ -10,11 +10,17 @@ export default function NewRestaurantForm() {
     const [enteredReview, setEnteredReview] = useState("");
     const [enteredLocation, setEnteredLocation] = useState("");
 
-    function increaseStarCount(event) {
+    function changeStarCount(event) {
         let stars = event.target.id;
         stars = stars.substring(stars.length - 1, stars.length);
         setStarCount(stars);
         console.log(stars);
+        let starList = event.target.parentNode.querySelectorAll("img");
+
+        starList.forEach((star, index) => {
+            star.src = "star.svg";
+            if (index + 1 <= stars) star.src = "star_filled.svg";
+        });
     }
 
     const locationChangeHandler = (event) => {
@@ -85,12 +91,12 @@ export default function NewRestaurantForm() {
         <div id="new_restaurant_form">
             <form onSubmit={submitHandler}>
                 <h1>New Restaurant Form</h1>
-                <div>
-                    <img id="star11" onClick={increaseStarCount} src="star.svg" alt=""></img>
-                    <img id="star12" onClick={increaseStarCount} src="star.svg" alt=""></img>
-                    <img id="star13" onClick={increaseStarCount} src="star.svg" alt=""></img>
-                    <img id="star14" onClick={increaseStarCount} src="star.svg" alt=""></img>
-                    <img id="star15" onClick={increaseStarCount} src="star.svg" alt=""></img>
+                <div id="new_rating_container">
+                    <img id="star11" onClick={changeStarCount} src="star.svg" alt=""></img>
+                    <img id="star12" onClick={changeStarCount} src="star.svg" alt=""></img>
+                    <img id="star13" onClick={changeStarCount} src="star.svg" alt=""></img>
+                    <img id="star14" onClick={changeStarCount} src="star.svg" alt=""></img>
+                    <img id="star15" onClick={changeStarCount} src="star.svg" alt=""></img>
                 </div>
                 <input placeholder="Restaurant Name" value={enteredName} onChange={nameChangeHandler}></input>
                 <input placeholder="Image Url" value={enteredImage} onChange={imageChangeHandler}></input>

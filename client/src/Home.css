@@ -117,3 +117,6 @@ Link {
 
 #logout {
 }
+#new_rating_container img {
+    width: 30px;
+}
