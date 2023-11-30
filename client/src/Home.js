@@ -23,7 +23,7 @@ export default function Home() {
     let restaurantList;
 
     restaurantList = restaurants.map((item, index) => {
-        return <Card id={item._id} key={index} title={item.name} image={item.image} review={item.description} />;
+        return <Card id={item._id} key={index} title={item.title} image={item.image} review={item.description} />;
     });
 
     function addItem(event) {}
