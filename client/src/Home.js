@@ -34,7 +34,7 @@ export default function Home() {
     return (
         <div>
             <header>
-                <img src="logo.png" alt="Logo" />
+                <img src="logo.png" alt=""></img>
             </header>
 
             {checkLoginStatus() && (

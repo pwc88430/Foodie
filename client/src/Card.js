@@ -25,23 +25,23 @@ export default function Card({ name, image, review, id }) {
 
     return (
         <div id={id} className="card">
-            <img id="main_picture" src={image}></img>
+            <img id="main_picture" src={image} alt=""></img>
             <div id="rating_container">
                 <h1 id="title">{name}</h1>
                 <div id="rating">
-                    <img src="star.svg"></img>
-                    <img src="star.svg"></img>
-                    <img src="star.svg"></img>
-                    <img src="star.svg"></img>
-                    <img src="star.svg"></img>
+                    <img src="star.svg" alt=""></img>
+                    <img src="star.svg" alt=""></img>
+                    <img src="star.svg" alt=""></img>
+                    <img src="star.svg" alt=""></img>
+                    <img src="star.svg" alt=""></img>
                 </div>
             </div>
             <div id="comment_container">
                 {review}
                 <div id="edit_buttons">
-                    <img onClick={deleteCard} src="delete.svg"></img>
+                    <img onClick={deleteCard} src="delete.svg" alt=""></img>
                     <Link id="edit" to="/editItem">
-                        <img src="edit.svg"></img>
+                        <img src="edit.svg" alt=""></img>
                     </Link>
                 </div>
             </div>

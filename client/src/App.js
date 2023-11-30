@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+
 import "./App.css";
 import LoginSignupPage from "./LoginSignupPage";
 import Home from "./Home";
@@ -13,12 +13,11 @@ function App() {
         <Router>
             <div>
                 <Routes>
-                    <Route exact path="/" element={<Home/>} />
+                    <Route exact path="/" element={<LoginSignupPage/>} />
                     <Route exact path="/login" element={<LoginSignupPage/>} />
                     <Route path="/home" element={<Home/>} />
                     <Route path="/editItem" element={<EditItem />} />
                     <Route path="/addItem" element={<AddItem />} />
-                    <Route path="/editItem" element={<EditItem />} />
                 </Routes>
             </div>
         </Router>

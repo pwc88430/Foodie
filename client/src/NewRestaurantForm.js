@@ -34,11 +34,11 @@ export default function NewRestaurantForm() {
     function submitHandler(event) {
         event.preventDefault();
 
-        if (enteredName == "") {
+        if (enteredName === "") {
             alert("Please enter a Restaurant Name");
-        } else if (enteredImage == "") {
+        } else if (enteredImage === "") {
             alert("Please enter a Restaurant Image");
-        } else if (enteredReview == "") {
+        } else if (enteredReview === "") {
             alert("Please enter a Restaurant Review");
         } else {
             axios
@@ -66,6 +66,7 @@ export default function NewRestaurantForm() {
             console.log("Image: " + enteredImage);
 
             console.log("Review: " + enteredReview);
+            console.log("Date: " + id)
         }
     }
 
@@ -74,11 +75,11 @@ export default function NewRestaurantForm() {
             <form onSubmit={submitHandler}>
                 <h1>New Restaurant Form</h1>
                 <div>
-                    <img onClick={increaseStarCount} src="star.svg"></img>
-                    <img onClick={increaseStarCount} src="star.svg"></img>
-                    <img onClick={increaseStarCount} src="star.svg"></img>
-                    <img onClick={increaseStarCount} src="star.svg"></img>
-                    <img onClick={increaseStarCount} src="star.svg"></img>
+                    <img onClick={increaseStarCount} src="star.svg" alt=""></img>
+                    <img onClick={increaseStarCount} src="star.svg" alt=""></img>
+                    <img onClick={increaseStarCount} src="star.svg" alt=""></img>
+                    <img onClick={increaseStarCount} src="star.svg" alt=""></img>
+                    <img onClick={increaseStarCount} src="star.svg" alt=""></img>
                 </div>
                 <input placeholder="Restaurant Name" value={enteredName} onChange={nameChangeHandler}></input>
                 <input placeholder="Image Url" value={enteredImage} onChange={imageChangeHandler}></input>
