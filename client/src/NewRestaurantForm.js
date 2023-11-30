@@ -33,6 +33,7 @@ export default function NewRestaurantForm() {
 
     function submitHandler(event) {
         event.preventDefault();
+        const token = localStorage.getItem('jwt');
 
         if (enteredName === "") {
             alert("Please enter a Restaurant Name");
@@ -46,7 +47,10 @@ export default function NewRestaurantForm() {
                     "http://localhost:8000/api/items",
                     { title: enteredName, description: enteredReview, publishedDate: new Date(), image: enteredImage },
                     {
-                        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+                        headers: { 
+                            "Authorization": `Bearer ${token}`,
+                            "Content-Type": "application/json", 
+                            "Access-Control-Allow-Origin": "*" },
                     }
                 )
                 .then((res) => {
