@@ -21,6 +21,9 @@
     flex-direction: column;
     align-items: center;
 }
+#rating_container img {
+    width: 30px;
+}
 
 #title {
     margin-bottom: 0;
@@ -49,7 +52,47 @@
 
 #comment_container img {
     width: 30px;
+    margin: 3px 0;
 }
 
-#delete_prompt {
+#date {
+    display: flex;
+    align-items: first baseline;
+}
+
+#location {
+    display: flex;
+    align-items: center;
+}
+#location img {
+    width: 23px;
+    margin-right: 5px;
+}
+
+#review img {
+    width: 23px;
+    margin-right: 10px;
+}
+
+#date {
+    display: flex;
+    align-items: center;
+}
+
+#date img {
+    width: 23px;
+    margin-right: 6px;
+}
+
+#user {
+    display: flex;
+    align-items: center;
+}
+#user img {
+    width: 23px;
+    margin-right: 6px;
+}
+
+#star1 {
+    filter: hue-rotate(90);
 }

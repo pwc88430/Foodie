@@ -8,16 +8,18 @@ export default function NewRestaurantForm() {
     const [enteredName, setEnteredName] = useState("");
     const [enteredImage, setEnteredImage] = useState("");
     const [enteredReview, setEnteredReview] = useState("");
+    const [enteredLocation, setEnteredLocation] = useState("");
 
     function increaseStarCount(event) {
-        if (event.target.classList.contains("rewarded")) {
-            setStarCount(starCount - 1);
-        } else {
-            setStarCount(starCount + 1);
-        }
-        event.target.classList.toggle("rewarded");
-        console.log(starCount);
+        let stars = event.target.id;
+        stars = stars.substring(stars.length - 1, stars.length);
+        setStarCount(stars);
+        console.log(stars);
     }
+
+    const locationChangeHandler = (event) => {
+        setEnteredLocation(event.target.value);
+    };
 
     const nameChangeHandler = (event) => {
         setEnteredName(event.target.value);
@@ -33,7 +35,8 @@ export default function NewRestaurantForm() {
 
     function submitHandler(event) {
         event.preventDefault();
-        const token = localStorage.getItem('jwt');
+        const token = localStorage.getItem("jwt");
+        const user = localStorage.getItem("username");
 
         if (enteredName === "") {
             alert("Please enter a Restaurant Name");
@@ -41,36 +44,40 @@ export default function NewRestaurantForm() {
             alert("Please enter a Restaurant Image");
         } else if (enteredReview === "") {
             alert("Please enter a Restaurant Review");
+        } else if (enteredLocation == "") {
+            alert("Please enter a location");
         } else {
             axios
                 .post(
                     "http://localhost:8000/api/items",
-                    { title: enteredName, description: enteredReview, publishedDate: new Date(), image: enteredImage },
                     {
-                        headers: { 
-                            "Authorization": `Bearer ${token}`,
-                            "Content-Type": "application/json", 
-                            "Access-Control-Allow-Origin": "*" },
+                        title: enteredName,
+                        description: enteredReview,
+                        publishedDate: new Date(),
+                        image: enteredImage,
+                        location: enteredLocation,
+                        user: user,
+                        stars: starCount,
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            "Content-Type": "application/json",
+                            "Access-Control-Allow-Origin": "*",
+                        },
                     }
                 )
                 .then((res) => {
                     setEnteredName("");
                     setEnteredImage("");
                     setEnteredReview("");
+                    setEnteredLocation("");
                     alert("Restaurant Added Successfully!");
                     navigate("/home");
                 })
                 .catch((err) => {
                     console.log("Error");
                 });
-            const id = new Date().getTime();
-
-            console.log("Name: " + enteredName);
-
-            console.log("Image: " + enteredImage);
-
-            console.log("Review: " + enteredReview);
-            console.log("Date: " + id)
         }
     }
 
@@ -79,14 +86,16 @@ export default function NewRestaurantForm() {
             <form onSubmit={submitHandler}>
                 <h1>New Restaurant Form</h1>
                 <div>
-                    <img onClick={increaseStarCount} src="star.svg" alt=""></img>
-                    <img onClick={increaseStarCount} src="star.svg" alt=""></img>
-                    <img onClick={increaseStarCount} src="star.svg" alt=""></img>
-                    <img onClick={increaseStarCount} src="star.svg" alt=""></img>
-                    <img onClick={increaseStarCount} src="star.svg" alt=""></img>
+                    <img id="star11" onClick={increaseStarCount} src="star.svg" alt=""></img>
+                    <img id="star12" onClick={increaseStarCount} src="star.svg" alt=""></img>
+                    <img id="star13" onClick={increaseStarCount} src="star.svg" alt=""></img>
+                    <img id="star14" onClick={increaseStarCount} src="star.svg" alt=""></img>
+                    <img id="star15" onClick={increaseStarCount} src="star.svg" alt=""></img>
                 </div>
                 <input placeholder="Restaurant Name" value={enteredName} onChange={nameChangeHandler}></input>
                 <input placeholder="Image Url" value={enteredImage} onChange={imageChangeHandler}></input>
+                <input placeholder="Location" value={enteredLocation} onChange={locationChangeHandler}></input>
+
                 <textarea placeholder="description" value={enteredReview} onChange={reviewChangeHandler}></textarea>
                 <button type="submit">Add Restaurant</button>
                 <Link style={{ textDecoration: "none" }} id="cancel" to="/home">

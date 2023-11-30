@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./LoginSignupPage.css";
 
 export default function LoginSignupPage() {
     const [signupData, setSignupData] = useState({
         email: "",
         username: "",
-        password: ""
+        password: "",
     });
     const [loginData, setLoginData] = useState({
         email: "",
-        password: ""
+        password: "",
     });
     const [signupmsg, setSignupmsg] = useState("");
     const [tosChecked, setTosChecked] = useState(false);
@@ -32,11 +32,11 @@ export default function LoginSignupPage() {
     async function handleSignup(event) {
         event.preventDefault(); // Prevents the default form submit action
         try {
-            const response = await axios.post('http://localhost:8000/api/users/signup', signupData);
+            const response = await axios.post("http://localhost:8000/api/users/signup", signupData);
             console.log("User registered successfully", response.data);
             setSignupmsg("User registered successfully, you may now log in.");
         } catch (error) {
-            console.error('Signup failed:', error.response ? error.response.data : error.message);
+            console.error("Signup failed:", error.response ? error.response.data : error.message);
             setSignupmsg("Error registering user, please try again.");
         }
     }
@@ -45,12 +45,16 @@ export default function LoginSignupPage() {
         event.preventDefault(); // Prevents the default form submit action
         // console.log(loginData);
         try {
-            const response = await axios.post('http://localhost:8000/api/users/login', loginData);
+            const response = await axios.post("http://localhost:8000/api/users/login", loginData);
             console.log("Login Successful");
-            localStorage.setItem('jwt', response.data.token);
-            navigate('/');
+
+            localStorage.setItem("jwt", response.data.token);
+            localStorage.setItem("username", response.data.username);
+            console.log(response.data.username);
+            console.log(localStorage.getItem("username"));
+            navigate("/");
         } catch (error) {
-            console.error('Login failed:', error.response ? error.response.data : error.message);
+            console.error("Login failed:", error.response ? error.response.data : error.message);
             setSignupmsg("Error with login, please check username and password and try again.");
         }
     }
@@ -82,7 +86,7 @@ export default function LoginSignupPage() {
 
     return (
         <div>
-           <header>
+            <header>
                 <img src="logo.png" alt="Foodie"></img>
             </header>
             <div className="tabs" onClick={changeTabs}>
@@ -97,54 +101,43 @@ export default function LoginSignupPage() {
                 <div className="tabs-content">
                     <div className="content live" id="login">
                         <form onSubmit={handleLogin}>
-                            <input 
-                                placeholder="email"
-                                name="email"
-                                value = {loginData.email}
-                                onChange={handleLoginInputChange} />
-                            <input 
-                                placeholder="password" 
-                                name="password" 
+                            <input placeholder="email" name="email" value={loginData.email} onChange={handleLoginInputChange} />
+                            <input
+                                placeholder="password"
+                                name="password"
                                 type="password"
-                                value={loginData.password} 
-                                onChange={handleLoginInputChange} />
-                            <button type = "submit" className="button">Login</button>
+                                value={loginData.password}
+                                onChange={handleLoginInputChange}
+                            />
+                            <button type="submit" className="button">
+                                Login
+                            </button>
                         </form>
                     </div>
                     <div className="content" id="signup">
                         <form onSubmit={handleSignup}>
-                            <input 
-                                placeholder="email" 
-                                name="email" 
-                                value={signupData.email} 
-                                onChange={handleSignupInputChange}/>
-                            <input 
-                                placeholder="username" 
-                                name="username" 
-                                value={signupData.username} 
-                                onChange={handleSignupInputChange} />
-                            <input 
-                                placeholder="password" 
-                                name="password" 
+                            <input placeholder="email" name="email" value={signupData.email} onChange={handleSignupInputChange} />
+                            <input placeholder="username" name="username" value={signupData.username} onChange={handleSignupInputChange} />
+                            <input
+                                placeholder="password"
+                                name="password"
                                 type="password"
-                                value={signupData.password} 
-                                onChange={handleSignupInputChange} />
+                                value={signupData.password}
+                                onChange={handleSignupInputChange}
+                            />
                             <div>
-                                <input type="checkbox"
-                                    checked = {tosChecked}
-                                    onChange={handleTosChecked}
-                                ></input>
+                                <input type="checkbox" checked={tosChecked} onChange={handleTosChecked}></input>
                                 <label>
                                     I agree to the <a href="https://en.wikipedia.org/wiki/Lionel_Messi">Terms of Service</a>
                                 </label>
                             </div>
-                            <button type = "submit" className="button" disabled = {!tosChecked}>Sign Up</button>
+                            <button type="submit" className="button" disabled={!tosChecked}>
+                                Sign Up
+                            </button>
                         </form>
                     </div>
-                    
-                    <div className="successmsg">
-                        {signupmsg}
-                    </div>
+
+                    <div className="successmsg">{signupmsg}</div>
                 </div>
             </div>
         </div>
