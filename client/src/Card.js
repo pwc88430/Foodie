@@ -2,7 +2,8 @@ import "./Card.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-export default function Card({ name, image, review, id }) {
+export default function Card({ title, image, review, id }) {
+    console.log(title);
     const deleteCard = (event) => {
         axios
             .delete(
@@ -27,7 +28,7 @@ export default function Card({ name, image, review, id }) {
         <div id={id} className="card">
             <img id="main_picture" src={image} alt=""></img>
             <div id="rating_container">
-                <h1 id="title">{name}</h1>
+                <h1 id="title">{title}</h1>
                 <div id="rating">
                     <img src="star.svg" alt=""></img>
                     <img src="star.svg" alt=""></img>
