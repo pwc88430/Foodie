@@ -26,6 +26,7 @@ export default function Home() {
     const logout = () => {
         localStorage.removeItem('jwt');
         navigate('/');
+        alert("Successfully Logged Out");
     }
     const restaurantList = restaurants.map((item, index) => (
         <Card id={item._id} key={index} title={item.name} image={item.image} review={item.description} />
