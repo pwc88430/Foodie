@@ -43,10 +43,11 @@ export default function LoginSignupPage() {
 
     async function handleLogin(event) {
         event.preventDefault(); // Prevents the default form submit action
+        // console.log(loginData);
         try {
             const response = await axios.post('http://localhost:8000/api/users/login', loginData);
-            console.log("Login Successful", response.data);
-            // setIsLoggedIn(true);
+            console.log("Login Successful");
+            localStorage.setItem('jwt', response.data.token);
             navigate('/');
         } catch (error) {
             console.error('Login failed:', error.response ? error.response.data : error.message);

@@ -1,47 +1,53 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
 import Card from "./Card";
 import "./Card.css";
-import NewRestaurantForm from "./NewRestaurantForm";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
 
 export default function Home() {
     const [restaurants, setRestaurants] = useState([]);
+    const navigate = useNavigate();
+
+    const checkLoginStatus = () => {
+        return localStorage.getItem('jwt') !== null;
+    }
 
     useEffect(() => {
-        axios
-            .get("http://localhost:8000/api/items", { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } })
+        axios.get("http://localhost:8000/api/items", { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } })
             .then((res) => {
                 setRestaurants(res.data);
-                console.log(res.data);
             })
             .catch((err) => {
-                console.log("Error");
+                console.error(err);
             });
     }, []);
 
-    let restaurantList;
 
-    restaurantList = restaurants.map((item, index) => {
-        return <Card id={item._id} key={index} title={item.name} image={item.image} review={item.description} />;
-    });
-
-    function addItem(event) {}
+    const logout = () => {
+        localStorage.removeItem('jwt');
+        navigate('/');
+    }
+    const restaurantList = restaurants.map((item, index) => (
+        <Card id={item._id} key={index} title={item.name} image={item.image} review={item.description} />
+    ));
 
     return (
         <div>
             <header>
-                <img src="logo.png"></img>
+                <img src="logo.png" alt="Logo" />
             </header>
 
-            <Link style={{ textDecoration: "none" }} to="/addItem" id="new_item_button">
-                +
-            </Link>
+            {checkLoginStatus() && (
+                <Link to="/addItem" id="new_item_button" style={{ textDecoration: "none" }}>
+                    +
+                </Link>
+            )}
             <div id="card_container">{restaurantList}</div>
 
-            <Link style={{ textDecoration: "none" }} id="logout" to="/">
-                Logout
-            </Link>
+            <button id="logout" onClick={checkLoginStatus() ? logout : () => navigate('/login')}>
+                {checkLoginStatus() ? "Logout" : "Login"}
+            </button>
         </div>
     );
 }
+
