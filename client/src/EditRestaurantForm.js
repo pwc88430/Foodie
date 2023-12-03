@@ -29,6 +29,7 @@ export default function EditRestaurantForm() {
     const [enteredName, setEnteredName] = useState("");
     const [enteredImage, setEnteredImage] = useState("");
     const [enteredReview, setEnteredReview] = useState("");
+    const [enteredLocation, setEnteredLocation] = useState("");
 
     function increaseStarCount(event) {
         if (event.target.classList.contains("rewarded")) {
@@ -39,6 +40,8 @@ export default function EditRestaurantForm() {
         event.target.classList.toggle("rewarded");
         console.log(starCount);
     }
+
+    const locationChangeHandler = (event) => [setEnteredLocation(event.target.value)];
 
     const nameChangeHandler = (event) => {
         setEnteredName(event.target.value);
@@ -97,6 +100,7 @@ export default function EditRestaurantForm() {
                 <input placeholder={enteredName} onChange={nameChangeHandler}></input>
                 <input placeholder={enteredImage}onChange={imageChangeHandler}></input>
                 <textarea placeholder={enteredReview}onChange={reviewChangeHandler}></textarea>
+                <location placeholder={enteredLocation} onChange={locationChangeHandler}></location>
                 <button type="submit">Update Restaurant</button>
                 <Link style={{ textDecoration: "none" }} id="cancel" to="/home">
                     Cancel
