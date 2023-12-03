@@ -1,7 +1,30 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function EditRestaurantForm() {
+    const navigate = useNavigate();
+    const { itemId } = useParams();
+    useEffect(() => {
+        axios
+        .get("http://localhost:8000/api/items/" + itemId, { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } })
+        .then((res) => {
+            //console.log(res.data)
+            setStarCount(res.data.stars);
+            //console.log(starCount);
+            setEnteredName(res.data.title);
+            //console.log(enteredName)
+            setEnteredImage(res.data.image);
+            //console.log(enteredImage);
+            setEnteredReview(res.data.description);
+            //console.log(enteredReview);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    }, []);
+
     const [starCount, setStarCount] = useState(0);
     const [enteredName, setEnteredName] = useState("");
     const [enteredImage, setEnteredImage] = useState("");
@@ -31,19 +54,33 @@ export default function EditRestaurantForm() {
 
     function submitHandler(event) {
         event.preventDefault();
-
-        if (enteredName === "") {
-        } else if (enteredImage === "") {
-        } else if (enteredReview === "") {
-        } else {
-            const id = new Date().getTime();
-
-            console.log("Name: " + enteredName);
-
-            console.log("Image: " + enteredImage);
-
-            console.log("Review: " + enteredReview);
-        }
+        const token = localStorage.getItem("jwt");
+        const user = localStorage.getItem("username");
+        axios.put(
+            "http://localhost:8000/api/items/"+itemId,
+            {
+                title: enteredName,
+                description: enteredReview,
+                publishedDate: new Date(),
+                image: enteredImage,
+                // location: enteredLocation,
+                user: user,
+                stars: starCount,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                },
+            })
+            .then((res) => {
+                alert("Restaurant Updated Successfully!");
+                navigate("/home");
+            })
+            .catch((err) => {
+                console.log("Error" + err);
+            });
     }
 
     return (
@@ -57,9 +94,9 @@ export default function EditRestaurantForm() {
                     <img onClick={increaseStarCount} src="star.svg" alt=""></img>
                     <img onClick={increaseStarCount} src="star.svg" alt=""></img>
                 </div>
-                <input placeholder="Restaurant Name" onChange={nameChangeHandler}></input>
-                <input placeholder="Image Url" onChange={imageChangeHandler}></input>
-                <textarea placeholder="description" onChange={reviewChangeHandler}></textarea>
+                <input placeholder={enteredName} onChange={nameChangeHandler}></input>
+                <input placeholder={enteredImage}onChange={imageChangeHandler}></input>
+                <textarea placeholder={enteredReview}onChange={reviewChangeHandler}></textarea>
                 <button type="submit">Update Restaurant</button>
                 <Link style={{ textDecoration: "none" }} id="cancel" to="/home">
                     Cancel

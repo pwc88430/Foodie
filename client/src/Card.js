@@ -69,7 +69,7 @@ export default function Card({ stars, user, location, title, image, review, id, 
                 <div id="edit_buttons" hidden={!(localStorage.getItem("jwt") !== null)}>
                     <div>
                         <img onClick={deleteCard} src="delete.svg" alt=""></img>
-                        <Link id="edit" to="/editItem">
+                        <Link id="edit" to={`/editItem/${id}`}>
                             <img src="edit.svg" alt=""></img>
                         </Link>
                     </div>
