@@ -18,8 +18,8 @@ Follow these steps to get Friends' Foodie Hub up and running on your local machi
 
 1. **Clone the Repository:**
     ```bash
-    git clone https://github.com/your-username/friends-foodie-hub.git
-    cd friends-foodie-hub
+    git clone https://github.com/your-username/foodie.git
+    cd foodie
     ```
 
 2. **Install Dependencies:**
