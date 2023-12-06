@@ -39,7 +39,7 @@ Follow these steps to get Friends' Foodie Hub up and running on your local machi
    ![Screenshot 2023-12-06 145715](https://github.com/pwc88430/Foodie/assets/119768381/e362e18c-be6d-4171-a4a0-681e7b37b478)
 
 ## Contributions
-We welcome contributions! If you'd like to enhance or fix issues in the project, please follow our [contribution guidelines](CONTRIBUTING.md).
+We welcome contributions! If you'd like to enhance or fix issues in the project please let us know beforehand!.
 
 
 
