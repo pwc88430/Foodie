@@ -31,7 +31,7 @@ Follow these steps to get Friends' Foodie Hub up and running on your local machi
     ```bash
     
     npm start on client side
-    and node app.js
+    and node app.js on server folder
     ```
 
 4. **Open Your Browser:**
