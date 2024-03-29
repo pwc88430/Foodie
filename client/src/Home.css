@@ -84,9 +84,9 @@
     background-color: #74f7c9;
     width: fit-content;
     padding: 10px;
-    position: fixed;
+    margin-right: 20px;
     top: 40px;
-    right: 20px;
+    left: 30px;
     border-radius: 10px;
 }
 
@@ -95,9 +95,22 @@
     color: white;
 }
 
-Link {
-    text-decoration: none;
+#myPost {
+    background-color: #74f7c9;
+    width: fit-content;
+    padding: 10px;
+    margin-right: 25px;
+   
+    border-radius: 10px;
+
+   
 }
+
+#myPost:hover {
+    background-color: #4eab8b;
+    color: white;
+}
+
 
 #cancel {
     background-color: #ff0000;
@@ -115,8 +128,7 @@ Link {
     margin-top: 150px;
 }
 
-#logout {
-}
+
 #new_rating_container img {
     width: 30px;
 }

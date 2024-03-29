@@ -45,20 +45,27 @@ export default function Home() {
 
     return (
         <div>
-            <header>
-                <img src="logo.png" alt=""></img>
+            <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div id="buttonlink" style={{ marginLeft: "auto" }}>
+                    <button id="myPost" onClick={() => navigate("/MyPost")} style={{ marginRight: "10px" }}>
+                        {checkLoginStatus() ? "My Post" : "Start Posting"}
+                    </button>
+                    <button id="logout" onClick={checkLoginStatus() ? logout : () => navigate("/login")}>
+                        {checkLoginStatus() ? "Logout" : "Login"}
+                    </button>
+                </div>
+
+                <img src="logo.png" alt="" />
+
+                {checkLoginStatus() && (
+                    <Link to="/addItem" id="new_item_button" style={{ textDecoration: "none" }}>
+                        +
+                    </Link>
+                )}
             </header>
 
-            {checkLoginStatus() && (
-                <Link to="/addItem" id="new_item_button" style={{ textDecoration: "none" }}>
-                    +
-                </Link>
-            )}
-            <div id="card_container">{restaurantList}</div>
 
-            <button id="logout" onClick={checkLoginStatus() ? logout : () => navigate("/login")}>
-                {checkLoginStatus() ? "Logout" : "Login"}
-            </button>
+            <div id="card_container">{restaurantList}</div>
         </div>
     );
 }
