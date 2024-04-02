@@ -1,13 +1,13 @@
 import React from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import Card from "./Card";
-import "./Card.css";
+import "./Card.css"; //
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import "./MyPost.css"
 function MyPost() {
         const [userItems, setUserItems] = useState([]);
-    
+        const navigate = useNavigate();
         useEffect(() => {
             // Retrieve user's ID from localStorage 
             const userId = localStorage.getItem('userId');
@@ -31,10 +31,14 @@ function MyPost() {
    
         const logout = () => {
             localStorage.removeItem('jwt');
-            // navigate("/"); // assuming you're using some kind of routing library like react-router
+             navigate("/"); // Redirect to home page
             alert('Successfully Logged Out');
         };
     
+        const checkLoginStatus = () => {
+            return localStorage.getItem("jwt") !== null;
+        };
+
         const userRestaurantList = userItems.map((item, index) => (
             <Card
                 user={item.user}
@@ -73,3 +77,5 @@ function MyPost() {
     );
 
 }
+
+export default MyPost;

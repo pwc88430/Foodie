@@ -1,0 +1,23 @@
+#card_container {
+    display: flex;
+    width: 70%;
+    flex-wrap: wrap;
+    margin: auto;
+    margin-top: 150px;
+}
+
+#myHome {
+    background-color: #74f7c9;
+    width: fit-content;
+    padding: 10px;
+    margin-right: 25px;
+   
+    border-radius: 10px;
+
+   
+}
+
+#myHome:hover {
+    background-color: #4eab8b;
+    color: white;
+}
